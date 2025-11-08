@@ -1,0 +1,54 @@
+:root {
+    --primary-color: #0078DB;
+    --secondary-color: #003662;
+    --dark-color: #2A2A2A;
+    --bg-color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--dark-color);
+    font-family: 'Roboto';
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+header, main {
+    width: 100%;
+    background: var(--bg-color);
+}
+
+header {
+    height:10%;
+}
+
+.logoArea {
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+
+.headerDisplayBox {
+    height: 100%;
+    width: 80%;
+    float: right;
+}
+
+main {
+    height: 90%;
+}
+
+section {
+    height: 100%;
+}
+
+section.menuDisplayBox {
+    width: 15%;
+    float: left;
+}
+
+section.mainDisplayBox {
+    width: 85%;
+    float: right;
+}
