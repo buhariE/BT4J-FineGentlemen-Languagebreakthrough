@@ -14,21 +14,33 @@
 <body>
     <header>
         <div class="logoArea">
-
+            L.B
         </div>
         <div class="headerDisplayBox">
-
+            Language Buddy
         </div>
     </header>
     <main>
        <section class="menuDisplayBox">
-
+        <div class="menuItems">
+            <div class="menuItem" id="startChat">Language Translator</div>
+            <div class="menuItem" id="viewHistory">Phrase Book</div>
+            <div class="menuItem" id="settings">Progress</div>
+        </div>
        </section> 
        <section class="mainDisplayBox">
         <div class="chatArea">
-
+            <div class="chatAreaOuput">
+                Welcome to Language Buddy! How can I assist you today?
+            </div>
         </div>
-        <div class="chatbox"></div>
+        <div class="chatbox">
+            <form action="" method="post">
+                <textarea name="chatDialogBox" id="chatDB">
+                </textarea>
+            </form>
+            <button type="submit">Translate</button>
+        </div>
        </section>
     </main>
 </body>
