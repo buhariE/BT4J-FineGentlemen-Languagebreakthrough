@@ -92,7 +92,7 @@ function appendBotBubble(text, { loading = false, error = false, meta } = {}) {
 // Common public endpoints: https://libretranslate.com / https://libretranslate.de
 const API_BASE = "https://api.mymemory.translated.net";
 
-async function translateWithLibre({ text, source = "en", target = "fr" }) {
+async function translateWithMyMemory({ text, source = "en", target = "fr" }) {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${source}|${target}`;
     const res = await fetch(url);
     const data = await res.json();
