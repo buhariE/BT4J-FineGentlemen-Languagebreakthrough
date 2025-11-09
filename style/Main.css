@@ -31,7 +31,7 @@ header {
     float: left;
     display: grid;
     place-items: center;
-    font-size: 2em;
+    font-size: 1em;
     border-right: 0.5px solid #b2b2b2;
 }
 
@@ -76,6 +76,8 @@ section.menuDisplayBox {
     width:95%;
     height: 50px;
     display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr;
     place-items: center;
     justify-items: start;
     padding-left:10px;
@@ -97,16 +99,103 @@ section.menuDisplayBox {
 }
 
 .userPreferences {
-    width: 100%;
+    width: 91%;
     height: 30%;
+    padding: 0px 4.5%;
+    display:grid;
+    align-items: end;
+    grid-template-rows:1fr;
+    border-top: 0.5px solid #b2b2b2;
+    color: var(--secondary-color);
+}
+
+.userPreferences .menuItem:hover {
+    background:white;
+    cursor: pointer;
 }
 
 section.mainDisplayBox {
     width: 85.03%;
+    height: 100%;
     float: right;
-    display: grid;
-    place-items: center;
     border-top:0.5px solid #b2b2b2;
     border-left:0.5px solid #b2b2b2;
     border-top-left-radius: 20px;
+}
+
+.chatArea, .chatbox {
+    width:98%;
+    margin: 2% 0 0 2%;
+}
+.chatArea {
+    height: 66.5%;
+}
+
+.chatAreaOuput {
+    width: 90%;
+    height: 100%;
+    padding: 1%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatAreaOuput img, .chatAreaOuput .emptyText {
+    width: 50%;
+    margin: auto;
+}
+
+.emptyText {
+    opacity: 0.5;
+}
+
+.chatbox {
+    height: 26.5%;
+    display: grid;
+    place-items:center;
+}
+
+.chatbox > form {
+    width:60%;
+    height:65px;
+    border: 0.5px solid var(--secondary-color);
+    border-radius: 5px;
+    display:grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0.5fr 6fr 1fr;
+    place-items: center;
+    gap: 5px;
+}
+
+.chatbox > form > textarea {
+    height: 65%;
+    width:95%;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 2%;
+    color: var(--secondary-color);
+}
+
+.morechatfns, .sendMsgBtn {
+    height: 100%;
+    width: 100%;
+}
+.morechatfns {
+    border: none;
+    background: transparent;
+    border-right: 0.5px solid var(--secondary-color);
+    font-size: 1em;
+}
+
+.sendMsgBtn {
+    border: none;
+    background: transparent;
+    border-left: 0.5px solid var(--secondary-color);
+    font-size: 1em;
+    color:white;
+    background: var(--secondary-color);
+    border-radius:0 5px 5px 0;
+    opacity: 0.6;
 }
