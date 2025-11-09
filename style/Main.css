@@ -22,6 +22,7 @@ header, main {
 header {
     height:10%;
     background: #b2b2b21b;
+    font-weight:700;
     
 }
 
@@ -31,16 +32,29 @@ header {
     float: left;
     display: grid;
     place-items: center;
+    grid-auto-flow: column;
     font-size: 1em;
     border-right: 0.5px solid #b2b2b2;
+    gap: 10px;
+}
+.logoArea i {
+    justify-self: end;
+    cursor: pointer;
+    font-size: 1.5em;
 }
 
+.logoArea span {
+    justify-self: start;
+    cursor: pointer;
+}
 .headerDisplayBox {
     height: 100%;
     width: 85%;
     float: right;
     display: grid;
     place-items: center start;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 6fr;
     font-size: 1em;
 }
 
@@ -144,9 +158,6 @@ section.mainDisplayBox {
 .chatAreaOuput img, .chatAreaOuput .emptyText {
     width: 50%;
     margin: auto;
-}
-
-.emptyText {
     opacity: 0.5;
 }
 
@@ -166,6 +177,7 @@ section.mainDisplayBox {
     grid-template-columns: 0.5fr 6fr 1fr;
     place-items: center;
     gap: 5px;
+    box-shadow: -6px -5px 14px -10px #0078DB, 5px 6px 12px -8px #003662;
 }
 
 .chatbox > form > textarea {
