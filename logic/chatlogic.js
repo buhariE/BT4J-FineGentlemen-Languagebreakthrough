@@ -6,21 +6,101 @@ const imgEmptyChat = chatOutput.querySelector("img");
 const emptyTextDiv = chatOutput.querySelector(".emptyText");
 const chatlangsBtn = document.getElementById("chatlangs");
 const chatlangDisplay = document.getElementById("chatlangDisplay");
+const setoptions = document.querySelector(".setTranslateOpt");
+const preferredLangDisplay = document.getElementById("setlangDisplay");
+const prefferedLangbtn = document.getElementById("language");
 
 // ===== Language selection (uses your existing .option items) =====
 // Map display names in your menu to language codes for the API.
 const LANG_MAP = {
-    "French": "fr",
+    "English": "en",
     "Spanish": "es",
-    "Deutch": "de",      // (typo kept to match your current label)
+    "French": "fr",
     "Cantonese": "yue",  // Some providers may not support 'yue'; see notes below
-    "Afrikaans": "af"
+    "Punjabi": "pa",      
+    "Vietnamese": "vi"
 };
-
+function buildLanguageOptions(languageMap,exclude,heading,parentElement) {
+    parentElement.querySelector(".options").innerHTML = "";
+    count = 0;
+    for(names in languageMap){
+        count++;
+        if (heading === "Preferred Language"){
+            const divOption = document.createElement("div");
+            divOption.className = "option";
+            divOption.textContent = names;
+            prefferedLangName = names;
+            if(count==1){
+                divOption.classList.add("active_language");
+            }            
+            parentElement.querySelector(".options").appendChild(divOption);
+            
+        } else {
+            if(names!=exclude){
+                const divOption = document.createElement("div");
+                divOption.className = "option";
+                divOption.textContent = names;
+                
+                
+                parentElement.querySelector(".options").appendChild(divOption);
+            }
+            
+        }
+    }
+}
 // Default target language (matches your placeholder)
 let targetLangName = "French";
+let prefferedLangName = "";
 let targetLangCode = LANG_MAP[targetLangName];
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    buildLanguageOptions(LANG_MAP,"","Preferred Language",preferredLangDisplay);
+    addclickbehavoir2();
+    buildLanguageOptions(LANG_MAP,"English","Translations",chatlangDisplay);
+    addclickbehavoir1();
+});
+
+function addclickbehavoir1(){
+    const chatLangOptions = document.querySelectorAll(
+        "#chatlangDisplay > .options .option"
+    );
+    for (let option of chatLangOptions) {
+        option.addEventListener("click", function () {
+            const name = option.textContent.trim();
+            if (LANG_MAP[name]) {
+                targetLangName = name;
+                targetLangCode = LANG_MAP[name];
+                textArea.placeholder = `${prefferedLangName} to ${targetLangName} translation.`;
+                toggleChatLangDisplay();
+                textArea.focus();
+            }
+        });
+    }
+}
+
+function addclickbehavoir2(){
+    const preferredLangOptions = document.querySelectorAll(
+        "#setlangDisplay > .options .option"
+    );
+    for (let option of preferredLangOptions) {
+        option.addEventListener("click", function () {
+            const name = option.textContent.trim();
+            if (LANG_MAP[name]) {
+                // Update active class
+                preferredLangOptions.forEach(opt => opt.classList.remove("active_language"));
+                option.classList.add("active_language");
+
+                // Update preferred language
+                prefferedLangName = name;
+                textArea.placeholder = `${prefferedLangName} to ${targetLangName} translation.`;
+                buildLanguageOptions(LANG_MAP, prefferedLangName, "Translations", chatlangDisplay);
+                addclickbehavoir1();
+                togglesetlangoptions();
+            }
+        });
+    }
+}
 // Keep your toggle behavior for the language popup
 function toggleChatLangDisplay() {
     chatlangDisplay.style.display =
@@ -31,22 +111,15 @@ chatlangsBtn.addEventListener("click", function (e) {
     toggleChatLangDisplay();
 });
 
-// When user clicks a language option, update selection + placeholder
-const chatLangOptions = document.querySelectorAll(
-    "#chatlangDisplay > .options .option"
-);
-for (let option of chatLangOptions) {
-    option.addEventListener("click", function () {
-        const name = option.textContent.trim();
-        if (LANG_MAP[name]) {
-            targetLangName = name;
-            targetLangCode = LANG_MAP[name];
-            textArea.placeholder = `English to ${targetLangName} translation.`;
-            toggleChatLangDisplay();
-            textArea.focus();
-        }
-    });
+function togglesetlangoptions(){
+    setoptions.style.display = 
+    setoptions.style.display === "grid" ? "none" : "grid";
 }
+
+prefferedLangbtn.addEventListener("click", function(e){
+    e.preventDefault();
+    togglesetlangoptions();
+});
 
 // ===== Message rendering helpers =====
 function removeEmptyState() {
@@ -104,7 +177,7 @@ async function translateText({ text, targetCode }) {
     // Special note: Some providers don’t support Cantonese ('yue').
     // If your chosen provider fails for 'yue', consider mapping to 'zh' or 'zh-Hant'
     // or switch to a provider that supports it. Here we just try and let errors bubble.
-    return translateWithLibre({ text, source: "en", target: targetCode });
+    return translateWithMyMemory({ text, source: LANG_MAP[prefferedLangName], target: targetCode });
 }
 
 // ===== Form handling =====
@@ -119,7 +192,7 @@ chatForm.addEventListener("submit", async function (event) {
     // 2) Show a "Translating…" bubble
     const translatingBubble = appendBotBubble("Translating…", {
         loading: true,
-        meta: `English → ${targetLangName}`
+        meta: `${prefferedLangName} → ${targetLangName}`
     });
 
     // 3) Call the translator
