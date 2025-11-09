@@ -24,6 +24,9 @@ header {
     background: #b2b2b21b;
     font-weight:700;
     
+    background: #b2b2b21b;
+    font-weight:700;
+    
 }
 
 .logoArea {
@@ -65,6 +68,7 @@ header {
 main {
     height: 90%;
     width: 100%;
+    width: 100%;
 }
 
 section {
@@ -73,7 +77,60 @@ section {
 
 section.menuDisplayBox {
     width: 14.9%;
+    width: 14.9%;
     float: left;
+    background: #b2b2b21b;
+    border-right: 0.5px solid #b2b2b2;
+}
+
+.menuItems {
+    width:91%;
+    height: 65%;
+    padding: 0px 4.5%;
+    padding-top: 20%;
+    color:grey;
+}
+
+.menuItem {
+    width:95%;
+    height: 50px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr;
+    place-items: center;
+    justify-items: start;
+    padding-left:10px;
+    margin-bottom:10px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.menuItems > .menuItem:hover {
+    background: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.activeMenuItem {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.userPreferences {
+    width: 91%;
+    height: 30%;
+    padding: 0px 4.5%;
+    display:grid;
+    align-items: end;
+    grid-template-rows:1fr;
+    border-top: 0.5px solid #b2b2b2;
+    color: var(--secondary-color);
+}
+
+.userPreferences .menuItem:hover {
+    background:white;
+    cursor: pointer;
     background: #b2b2b21b;
     border-right: 0.5px solid #b2b2b2;
 }
@@ -211,3 +268,149 @@ section.mainDisplayBox {
     border-radius:0 5px 5px 0;
     opacity: 0.6;
 }
+
+/* Cj CSS section */
+
+    .body {
+            font-family: Arial, sans-serif; /* Set font */
+            background: var(--secondary-color); /* Dark blue background */
+            min-height: 100vh; /* Full viewport height */
+            padding: 20px; /* Space around edges */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Container to hold everything */
+        .container {
+            max-width: 1200px; /* Maximum width */
+            margin: 0 auto; /* Center on page */
+        }
+
+        /* Header section at top */
+        .header {
+            text-align: center; /* Center text */
+            margin-bottom: 30px; /* Space below */
+            color: var(--bg-color); /* White text */
+        }
+
+        .header h1 {
+            font-size: 40px; /* Large title */
+            margin-bottom: 10px; /* Space below title */
+        }
+
+        /* Language dropdown box */
+        .language-selector {
+            background: var(--bg-color); /* White background */
+            padding: 15px; /* Space inside */
+            border-radius: 12px; /* Rounded corners */
+            max-width: 400px; /* Maximum width */
+            margin: 0 auto 30px; /* Center and add space below */
+            text-align: center; /* Center text */
+        }
+
+        .language-selector select {
+            padding: 10px 20px; /* Space inside dropdown */
+            border: 2px solid var(--primary-color); /* Blue border */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px; /* Text size */
+            margin-top: 10px; /* Space above */
+        }
+
+        /* Each category section */
+        .category-section {
+            background: var(--bg-color); /* White background */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Space inside */
+            margin-bottom: 20px; /* Space below */
+            border: 2px solid var(--primary-color); /* Blue border */
+        }
+
+        /* Category header area */
+        .category-header {
+            border-bottom: 2px solid var(--primary-color); /* Blue bottom line */
+            padding-bottom: 10px; /* Space below */
+            margin-bottom: 15px; /* Space after line */
+        }
+
+        .category-header h3 {
+            color: var(--primary-color); /* Blue text */
+            font-size: 20px; /* Text size */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Grid to hold phrase cards */
+        .phrases-grid {
+            display: grid; /* Use grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 10px; /* Space between cards */
+        }
+
+        /* Individual phrase card */
+        .phrase-card {
+            background: var(--bg-color); /* White background */
+            border: 2px solid var(--primary-color); /* Blue border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px; /* Space inside */
+            display: flex; /* Flexbox layout */
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center vertically */
+        }
+
+        .phrase-card:hover {
+            background: var(--primary-color); /* Blue background on hover */
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* English phrase text */
+        .phrase-english {
+            font-weight: bold; /* Make bold */
+            color: var(--dark-color); /* Dark text */
+            margin-bottom: 5px; /* Space below */
+        }
+
+        .phrase-card:hover .phrase-english {
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* Translated phrase text */
+        .phrase-translation {
+            color: var(--secondary-color); /* Dark blue text */
+            font-size: 14px; /* Smaller text */
+        }
+
+        .phrase-card:hover .phrase-translation {
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* Speaker button */
+        .speak-btn {
+            background: var(--primary-color); /* Blue background */
+            color: var(--bg-color); /* White icon */
+            border: none; /* No border */
+            border-radius: 50%; /* Circle shape */
+            width: 40px; /* Button width */
+            height: 40px; /* Button height */
+            font-size: 18px; /* Icon size */
+            cursor: pointer; /* Pointer on hover */
+        }
+
+        .speak-btn:hover {
+            background: var(--secondary-color); /* Dark blue on hover */
+        }
+
+        .speak-btn.playing {
+            background: var(--secondary-color); /* Dark blue when playing */
+            animation: pulse 1.5s infinite; /* Pulse animation */
+        }
+
+        /* Pulse animation for speaking */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); } /* Normal size */
+            50% { transform: scale(1.1); } /* Slightly bigger */
+        }
+
+        /* Info text at bottom */
+        .voice-info {
+            text-align: center; /* Center text */
+            margin-top: 20px; /* Space above */
+            color: var(--bg-color); /* White text */
+        }
