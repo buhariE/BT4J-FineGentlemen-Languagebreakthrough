@@ -33,7 +33,7 @@ const categoryNames = {
 
  // Emoji icon for each category
 const icons = {
-        emergency: '🚨',
+        emergency: '‼️',
         medical: '🏥',
         transportation: '🚁',
         food: '🍔'
@@ -51,3 +51,10 @@ const languageCodes = {
 
 
  let currentLanguage = 'en'; // Track which language is selected (starts with English)
+
+document.addEventListener("DOMContentLoaded", function () { // This code alows me to make sure the page is fully loaded before calling these functions
+    showPhrases();  // Display the phrases above
+    setupLanguageSelector();  // setsup the language dorpdown
+})
+
+
