@@ -1,15 +1,53 @@
 //============ CJ Session ==================
 const phrases = {
-    emergency : [ { en: "I need help", es: "Necesito ayuda", fr: "J'ai besoin d'aide",  },
-                { en: "Call the police", es: "Llame a la policía", fr: "Appelez la police", de: "Rufen Sie die Polizei", it: "Chiama la polizia", pt: "Chame a polícia" },
-                { en: "Call an ambulance", es: "Llame una ambulancia", fr: "Appelez une ambulance", de: "Rufen Sie einen Krankenwagen", it: "Chiama un'ambulanza", pt: "Chame uma ambulância" }
+    emergency : [  // emergency
+                    { en: "I need help", es: "Necesito ayuda", fr: "J'ai besoin d'aide", yue: "ngo5 seoi1jiu3 bong1sau2" , pa: "Mainū madada cāhīdī hai", vi:"tôi cần giúp đỡ"},
+                    { en: "Call the police", es: "Llame a la policía", fr: "Appelez la police", yue:"daa2bei2 ging2caat3", pa:"Pulasa nū bulā'ō", vi:"Gọi cảnh sát"},
+                    { en: "Call an ambulance", es: "Llame una ambulancia", fr: "Appelez une ambulance", yue:"giu3 gau3wu6 ce1", pa:"Aimbūlainsa nū kāla karō", vi:"Gọi xe cấp cứu"}
                 ],
 
-    medical: [
+    medical: [ // Medical category 
+                { en: "I need a docter", es: "Necesito un doctor", fr: "j'ai besoin d'un médecin", yue: "ngo5 seoi1jiu3 jat1go3 ji1sang1" , pa: "Mainū ika ḍākaṭara dī lōṛa hai", vi:"Tôi cần một bác sĩ"},
+                { en: "Where is the Hospital?", es: "donde esta el hospital", fr: "Où est l'hôpital", yue:"ji1jyun2 hai2 bin1", pa:"Hasapatāla kithē hai", vi:"Bệnh viện ở đâu"},
+                { en: "I am sick", es: "Maiṁ bimāra hāṁ", fr: "je suis malade", yue: "ngo5 beng6 zo2", pa: "Maiṁ bimāra hāṁ", vi: "tôi bị ốm"}
+             ],
+
+    transportation: [ // Transportation category
+                { en: "Where is the bus stop?", es: "¿Dónde está la parada de autobús?", fr: "Où est l'arrêt de bus ?", yue:"baa1si2 zaam6 hai2 bin1？", pa:"Basa aḍā kithē hai?", vi:"Trạm xe buýt ở đâu?" },
+                { en: "I need a taxi", es: "Necesito un taxi", fr: "J'ai besoin d'un taxi", yue:"ngo5 jiu3 gaa3 dik1si2", pa:"Mainū ika ṭaikasī cāhīdī hai", vi:"tôi cần một chiếc taxi" }
+            ],
+
+    food: [ // Food and water category
+                { en: "I am hungry", es: "Tengo hambre", fr: "J'ai faim", yue:"ngo5 hou2 tou5ngo6", pa: "Maiṁ bhukhā hāṁ ", vi: "tôi đói" },
+                { en: "I am thirsty", es: "Tengo sed", fr: "J'ai soif", yue: "ngo5 hou2 hau2hot3", pa: "Mainū pi'āsa lagī hai", vi: "tôi khát" }
+            ]
+};
+
+ // Category names translated to each language
+const categoryNames = {
+            emergency: { en: "Emergency", es: "Emergencia", fr: "Urgence", yue: "gan2gap1", pa: "Sakaṭakālīna", vi: "khẩn cấp" },
+            medical: { en: "Medical", es: "Médico", fr: "Médical", yue: "ji1hok6", pa: "Maiḍīkala", vi: "Thuộc về y học"  },
+            transportation: { en: "Transportation", es: "Transporte", fr: "Transport", yue: "gaau1tung1 gung1geoi6", pa: "Āvājā'ī", vi: "Vận tải"  },
+            food: { en: "Food & Water", es: "Comida y Agua", fr: "Nourriture et Eau", yue: "sik6mat6 tung4 seoi2", pa: "Bhōjana atē pāṇī", vi: "Thức ăn và nước"  }
+};
+
+ // Emoji icon for each category
+const icons = {
+        emergency: '🚨',
+        medical: '🏥',
+        transportation: '🚁',
+        food: '🍔'
+};
+
+// Browser codes for text-to-speech in each language
+const languageCodes = {
+     en: 'en-US', // English - United States
+     es: 'es-ES', // Spanish - Spain
+     fr: 'fr-FR', // French - France
+     yue: 'yue-YUE', // Cantonese - cantonese
+     pa: 'pa-PA', // Punjuabi - punjabi
+     vi: 'vi-VI'  // Vietnamese - vietnamese
+};
 
 
-
-
-
-    ],
-}
+ let currentLanguage = 'en'; // Track which language is selected (starts with English)
