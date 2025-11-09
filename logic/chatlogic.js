@@ -29,9 +29,9 @@ function buildLanguageOptions(languageMap,exclude,heading,parentElement) {
             const divOption = document.createElement("div");
             divOption.className = "option";
             divOption.textContent = names;
-            prefferedLangName = names;
             if(count==1){
                 divOption.classList.add("active_language");
+                prefferedLangName = names;
             }            
             parentElement.querySelector(".options").appendChild(divOption);
             
@@ -50,14 +50,14 @@ function buildLanguageOptions(languageMap,exclude,heading,parentElement) {
 }
 // Default target language (matches your placeholder)
 let targetLangName = "French";
-let prefferedLangName = "";
+let prefferedLangName = "English";
 let targetLangCode = LANG_MAP[targetLangName];
 
 document.addEventListener("DOMContentLoaded", function() {
 
     buildLanguageOptions(LANG_MAP,"","Preferred Language",preferredLangDisplay);
     addclickbehavoir2();
-    buildLanguageOptions(LANG_MAP,"English","Translations",chatlangDisplay);
+    buildLanguageOptions(LANG_MAP,prefferedLangName,"Translations",chatlangDisplay);
     addclickbehavoir1();
 });
 
