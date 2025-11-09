@@ -2,33 +2,92 @@
 <html lang="en">
 <head>
     <script src="./logic/Main.js"></script>
+    <script src="https://kit.fontawesome.com/53851b2526.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>L.B</title>
     <link rel="stylesheet" href="./style/Main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
+<!-- body section -->
 <body>
+    <!-- Header -->
     <header>
         <div class="logoArea">
-
+            <i class="fa-solid fa-globe"></i>
+            <span>
+                L.B
+            </span>
         </div>
         <div class="headerDisplayBox">
-
+            <div>
+                Language Buddy
+            </div>
+            <!-- To do: need to be animated ~ emmanuel -->
+            <div class="headerAnimatedSlider">
+                
+            </div>
         </div>
     </header>
+    <!-- Main section -->
     <main>
+        <!-- Wrapper for everything in the main section -->
        <section class="menuDisplayBox">
-
+        <!-- Si÷de menu section -->
+        <div class="menuItems">
+            <div class="menuItem activeMenuItem" id="startChat">
+                <i class="fa-solid fa-language"></i>
+                Language Translator
+            </div>
+            <div class="menuItem" id="viewHistory">
+                <i class="fa-solid fa-book"></i>
+                Phrase Book
+            </div>
+            <div class="menuItem" id="progress">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </div>
+        </div>
+        <div class="userPreferences">
+            <div class="menuItem" id="fltuserIcon">
+                <div class="fltavater">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <div class="fltuserDetials">
+                    Log In / Sign Up
+                </div>
+            </div>
+            <div class="menuItem" id="settings">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </div>
+        </div>
        </section> 
+       <!-- Section for chat area and chat box -->
        <section class="mainDisplayBox">
         <div class="chatArea">
-
+            <div class="chatAreaOuput">
+                <img src="./resources/emptychat.svg" alt="emptychat">
+                <div class="emptyText">
+                    Oops ! No messages yet. Start a conversation to see translations here.
+                </div>
+            </div>
         </div>
-        <div class="chatbox"></div>
+        <div class="chatbox">
+            <form action="" method="post">
+                <button class="morechatfns">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <textarea name="chatDialogBox" id="chatDB" placeholder="Type message here ..."></textarea>
+                <button type="submit" class="sendMsgBtn">
+                    <i class="fa-solid fa-share"></i>
+                </button>
+            </form>
+            
+        </div>
        </section>
     </main>
 </body>
