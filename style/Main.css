@@ -103,6 +103,8 @@ section.menuDisplayBox {
     margin-bottom:10px;
     font-size: 0.9em;
     font-weight: 500;
+    text-decoration: none;
+    color: grey;
 }
 
 .menuItems > .menuItem:hover {
@@ -110,6 +112,7 @@ section.menuDisplayBox {
     color: white;
     cursor: pointer;
     border-radius: 5px;
+    
 }
 
 .activeMenuItem {
@@ -125,65 +128,17 @@ section.menuDisplayBox {
     align-items: end;
     grid-template-rows:1fr;
     border-top: 0.5px solid #b2b2b2;
+    
+}
+.userPreferences .menuItem {
     color: var(--secondary-color);
 }
-
 .userPreferences .menuItem:hover {
-    background:white;
-    cursor: pointer;
-    background: #b2b2b21b;
-    border-right: 0.5px solid #b2b2b2;
-}
-
-.menuItems {
-    width:91%;
-    height: 65%;
-    padding: 0px 4.5%;
-    padding-top: 20%;
-    color:grey;
-}
-
-.menuItem {
-    width:95%;
-    height: 50px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 4fr;
-    place-items: center;
-    justify-items: start;
-    padding-left:10px;
-    margin-bottom:10px;
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
-.menuItems > .menuItem:hover {
-    background: var(--secondary-color);
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.activeMenuItem {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.userPreferences {
-    width: 91%;
-    height: 30%;
-    padding: 0px 4.5%;
-    display:grid;
-    align-items: end;
-    grid-template-rows:1fr;
-    border-top: 0.5px solid #b2b2b2;
-    color: var(--secondary-color);
-}
-
-.userPreferences .menuItem:hover {
-    background:white;
+    background: white;
     cursor: pointer;
 }
+
+
 
 section.mainDisplayBox {
     width: 85.03%;
@@ -197,6 +152,54 @@ section.mainDisplayBox {
 .chatArea, .chatbox {
     width:98%;
     margin: 2% 0 0 2%;
+}
+
+.chatbox {
+    position: relative;
+}
+
+.chatformTranslateOpt {
+    height:200px;
+    width:fit-content;
+    border-radius:5px;
+    background: var(--bg-color);
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 4fr;
+    place-items: center;
+    box-shadow: 0px 0px 3px -2px var(--dark-color);
+    border: 0.5px solid #b2b2b2;
+    position:absolute;
+    top: -145px;
+    left: 20%;
+    display: none;
+}
+
+.chatlabel, .option {
+    width:200px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    padding: 5px;
+}
+.chatlabel {
+    color:var(--dark-color);
+    opacity: 0.7;
+    border-bottom: 0.5px solid #b2b2b2;
+    margin:0;
+    
+}
+.option {
+    margin:5px 0;
+    border-bottom:0.5px solid #b2b2b2;
+    font-size: 0.9em;
+    font-weight:500;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+.options {
+    overflow: scroll;
+    height: 100%;
 }
 .chatArea {
     height: 66.5%;
@@ -216,6 +219,17 @@ section.mainDisplayBox {
     width: 50%;
     margin: auto;
     opacity: 0.5;
+}
+
+.userMessage {
+    display: block;
+    width:fit-content;
+    padding: 10px;
+    color: var(--bg-color);
+    background: var(--primary-color);
+    border-radius: 10px 10px 0 10px;
+    align-self: flex-end;
+    font-weight: 500;
 }
 
 .chatbox {
@@ -250,6 +264,7 @@ section.mainDisplayBox {
 .morechatfns, .sendMsgBtn {
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 .morechatfns {
     border: none;
@@ -267,6 +282,43 @@ section.mainDisplayBox {
     background: var(--secondary-color);
     border-radius:0 5px 5px 0;
     opacity: 0.6;
+}
+
+/* New: translated/output bubbles */
+.botMessage {
+    display: block;
+    max-width: 70%;
+    padding: 10px;
+    color: var(--dark-color);
+    background: #f2f6ff;
+    border: 1px solid #cfe2ff;
+    border-radius: 10px 10px 10px 0;
+    align-self: flex-start;
+    font-weight: 500;
+    white-space: pre-wrap;
+    /* keep line breaks */
+    word-break: break-word;
+    /* avoid overflow */
+}
+
+/* subtle meta line under bubbles (e.g., language) */
+.msgMeta {
+    font-size: 0.75em;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+/* while translating… */
+.botMessage.loading {
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* on error */
+.botMessage.error {
+    background: #fff5f5;
+    border-color: #ffcccc;
+    color: #7a1d1d;
 }
 
 /* Cj CSS section */

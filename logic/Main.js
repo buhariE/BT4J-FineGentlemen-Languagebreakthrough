@@ -145,4 +145,5 @@ function showPhrases(){
             speechSynthesis.speak(speech); // Start speaking the text
         }
 
+        
 
