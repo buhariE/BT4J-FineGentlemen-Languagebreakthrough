@@ -55,6 +55,94 @@ const languageCodes = {
 document.addEventListener("DOMContentLoaded", function () { // This code alows me to make sure the page is fully loaded before calling these functions
     showPhrases();  // Display the phrases above
     setupLanguageSelector();  // setsup the language dorpdown
-})
+
+});
+
+
+function setupLanguageSelector(){
+    const languageSelect = document.getElementById('languageSelect') // This goese to the PhraseBook html page and gets the dropped down items
+    languageSelect.addEventListener('change', function() {//Llistens for changes to languageSelect
+        currentLanguage = this.value; // keeps track of the language we are using switched on
+        showPhrases();
+    });
+}
+
+function showPhrases(){
+    const container = document.getElementById('phrasebookContainer') // This get the container 
+    container.innerHTML = ' '; // this is to clear anything in the 
+
+   
+            for (let category in phrases) {  // Loop through each category (emergency, medical, etc.)
+                const section = document.createElement('div'); // Create section element
+                section.className = 'category-section'; // Add CSS class for styling
+
+                const header = document.createElement('div'); // Create header element
+                header.className = 'category-header'; // Add CSS class
+                header.innerHTML = `<h3>${icons[category]} ${categoryNames[category][currentLanguage]}</h3>`; // Add icon and translated category name
+                section.appendChild(header); // Add header to section
+
+                const grid = document.createElement('div'); // Create grid for phrase cards
+                grid.className = 'phrases-grid'; // Add CSS class for grid layout
+
+                // Loop through each phrase in this category
+                phrases[category].forEach(function(phrase) {
+                    const card = document.createElement('div'); // Create card element
+                    card.className = 'phrase-card'; // Add CSS class for styling
+
+                    const translation = phrase[currentLanguage]; // Get phrase in selected language
+                    
+                    // Add content to card: English text, translation, and speaker button
+                    card.innerHTML = `
+                        <div>
+                            <div class="phrase-english">${phrase.en}</div>
+                            <div class="phrase-translation">${translation}</div>
+                        </div>
+                        <button class="speak-btn" onclick="speak('${translation.replace(/'/g, "\\'")}')">🔊</button>
+                    `;
+
+                    grid.appendChild(card); // Add card to grid
+                });
+
+                section.appendChild(grid); // Add grid to section
+                container.appendChild(section); // Add section to main container
+            }
+}
+
+
+        function speak(text) {// Speak the given text using browser's text-to-speech
+            speechSynthesis.cancel(); // Stop any speech currently playing
+
+            // Remove animation from all speaker buttons
+            document.querySelectorAll('.speak-btn').forEach(function(btn) {
+                btn.classList.remove('playing'); // Remove 'playing' class
+            });
+
+            const speech = new SpeechSynthesisUtterance(text); // Create speech object with text
+            speech.lang = languageCodes[currentLanguage]; // Set language for speech
+            speech.rate = 0.8; // Set speed (0.8 = slightly slower than normal)
+
+            // Find which button was clicked
+            const buttons = document.querySelectorAll('.speak-btn'); // Get all speaker buttons
+            let clickedButton = null; // Variable to store clicked button
+            buttons.forEach(function(btn) {
+                if (btn.textContent === '🔊') { // Check if button has speaker emoji
+                    clickedButton = btn; // Store reference to button
+                }
+            });
+
+
+            if (clickedButton) {// Add animation to button if found
+                clickedButton.classList.add('playing'); // Add 'playing' class for animation
+            }
+
+            
+            speech.onend = function() {// Remove animation when speech finishes
+                if (clickedButton) {
+                    clickedButton.classList.remove('playing'); // Remove 'playing' class
+                }
+            };
+
+            speechSynthesis.speak(speech); // Start speaking the text
+        }
 
 

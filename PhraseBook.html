@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhraseBook</title>
+    <link rel="stylesheet" href="./style/Main.css">
 </head>
 <body>
-    <div class = "container">
-        <div class ="Header">
+    <div class = "body">
+        <div class = "container">
+        <div class ="header">
             <h1>Welcome to the PhraseBook</h1>
-            <p> This page will show you any common phases used in in all languages to communicate</p>
+            <p> This page will show you some common phases used in in all languages to communicate</p>
             <p> Choose any language to hear it spoken in its selected accent/language</p>
         </div>
 
-        <div class = "Language-select">
+        <div class = "language-selector">
             <label for ="languageSelect"> Select Languages:</label> <!-- This for attribute connects the text to the id = "languageSelect"-->
+            <br>
             <select id = "languageSelect">
                 <option value = "en">English</option>
                 <option value = "es">Spanish(Español)</option>
@@ -29,11 +32,12 @@
             <!-- Phrases will be loaded here by JavaScript -->
         </div>
 
-        <div class="voice-info" id="voiceInfo">
-            🔊  Press on this to play text
-        </div>
-    </div><!-- This is the end of the container for whatever format we do -->
-    </body>
-<script src = "Main.js"></script>
+            <div class="voice-info" id="voiceInfo">
+                🔊  Press on this to play text
+            </div>
+        </div><!-- This is the end of the container for whatever format we do -->
+    </div>
+
+<script src = "./logic/Main.js"></script>
 </body>
 </html>
