@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Translator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #003662 0%, #0078DB 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 1000px;
+      width: 100%;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 0.95em;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1em;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+
+    select:hover {
+      border-color: #0078DB;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #0078DB;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #003662 0%, #0078DB 100%);
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #e0e0e0;
+    }
+
+    .recording-controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 0.95em;
+    }
+
+    .status.info {
+      background: #e3f2fd;
+      color: #0078DB;
+    }
+
+    .status.success {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .status.recording {
+      background: #fff3e0;
+      color: #f57c00;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #0078DB;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🎙️ Voice Translator</h1>
+  <p class="subtitle">Speak in any language, hear it in another</p>
+
+  <!-- Language Selection -->
+  <div class="section">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div>
+        <div class="section-title">From Language</div>
+        <select id="srcLang">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="zh">中文（普通话）</option>
+          <option value="pa">ਪੰਜਾਬੀ</option>
+        </select>
+      </div>
+      <div>
+        <div class="section-title">To Language</div>
+        <select id="tgtLang">
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="zh">中文（普通话）</option>
+          <option value="pa">ਪੰਜਾਬੀ</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recording -->
+  <div class="section">
+    <div class="section-title">Record & Translate</div>
+    <div class="recording-controls">
+      <button class="btn btn-primary" id="recordBtn" style="flex: 1;">
+        Start Recording
+      </button>
+      <button class="btn btn-secondary" id="stopBtn" style="flex: 1;" disabled>
+        Stop Recording
+      </button>
+    </div>
+    <div id="status" class="status info hidden">Ready to record</div>
+  </div>
+
+  <!-- Output -->
+  <div class="section">
+    <div class="section-title">Translated Audio</div>
+    <audio id="audioOutput" controls class="hidden"></audio>
+  </div>
+</div>
+
+<script>
+  const API_URL = 'http://localhost:8000';
+  let mediaRecorder = null;
+  let audioChunks = [];
+
+  const elements = {
+    recordBtn: document.getElementById('recordBtn'),
+    stopBtn: document.getElementById('stopBtn'),
+    status: document.getElementById('status'),
+    audioOutput: document.getElementById('audioOutput'),
+    srcLang: document.getElementById('srcLang'),
+    tgtLang: document.getElementById('tgtLang')
+  };
+
+  // Start recording
+  elements.recordBtn.addEventListener('click', async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+
+      mediaRecorder = new MediaRecorder(stream);
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = async () => {
+        await processRecording();
+      };
+
+      mediaRecorder.start();
+
+      elements.recordBtn.disabled = true;
+      elements.stopBtn.disabled = false;
+      elements.status.className = 'status recording';
+      elements.status.textContent = '🔴 Recording... Speak now!';
+      elements.status.classList.remove('hidden');
+
+    } catch (error) {
+      console.error('Error accessing microphone:', error);
+      elements.status.className = 'status error';
+      elements.status.textContent = 'Error: Could not access microphone. Please allow microphone access.';
+      elements.status.classList.remove('hidden');
+    }
+  });
+
+  // Stop recording
+  elements.stopBtn.addEventListener('click', () => {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+      mediaRecorder.stream.getTracks().forEach(track => track.stop());
+
+      elements.recordBtn.disabled = false;
+      elements.stopBtn.disabled = true;
+      elements.status.className = 'status info';
+      elements.status.innerHTML = 'Processing<span class="loading"></span>';
+    }
+  });
+
+  // Process recording
+  async function processRecording() {
+    try {
+      const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+
+      const formData = new FormData();
+      formData.append('file', audioBlob, 'recording.webm');
+      formData.append('src_lang', elements.srcLang.value);
+      formData.append('tgt_lang', elements.tgtLang.value);
+
+      const response = await fetch(`${API_URL}/api/translate-tts`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Translation failed: ${errorText}`);
+      }
+
+      const resultBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(resultBlob);
+
+      elements.audioOutput.src = audioUrl;
+      elements.audioOutput.classList.remove('hidden');
+
+      elements.status.className = 'status success';
+      elements.status.textContent = '✓ Translation complete! Listen below.';
+
+    } catch (error) {
+      console.error('Error processing recording:', error);
+      elements.status.className = 'status error';
+      elements.status.textContent = '✗ Error: ' + error.message;
+    }
+  }
+</script>
+</body>
+</html>

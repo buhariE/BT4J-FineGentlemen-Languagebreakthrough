@@ -29,9 +29,9 @@ LANG_MENU = {
     "1": ("English", "en"),
     "2": ("Français", "fr"),
     "3": ("Español", "es"),
-    "4": ("Tiếng Việt", "vi"),
+    "4": ("Tiếng Việt", "vi"), #veitnamesse
     "5": ("中文（普通话）", "zh"),      # Using Mandarin as a fallback for Cantonese
-    "6": ("ਪੰਜਾਬੀ", "pa"),
+    "6": ("ਪੰਜਾਬੀ", "pa"),   #punjabi
 }
 
 # Marian supports many en<->X pairs; we’ll use it when possible.
