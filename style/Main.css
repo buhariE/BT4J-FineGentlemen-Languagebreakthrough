@@ -21,22 +21,54 @@ header, main {
 
 header {
     height:10%;
+    background: #b2b2b21b;
+    font-weight:700;
+    
+    background: #b2b2b21b;
+    font-weight:700;
+    
 }
 
 .logoArea {
     height: 100%;
-    width: 20%;
+    width: 14.9%;
     float: left;
+    display: grid;
+    place-items: center;
+    grid-auto-flow: column;
+    font-size: 1em;
+    border-right: 0.5px solid #b2b2b2;
+    gap: 10px;
+}
+.logoArea i {
+    justify-self: end;
+    cursor: pointer;
+    font-size: 1.5em;
 }
 
+.logoArea span {
+    justify-self: start;
+    cursor: pointer;
+}
 .headerDisplayBox {
     height: 100%;
-    width: 80%;
+    width: 85%;
     float: right;
+    display: grid;
+    place-items: center start;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 6fr;
+    font-size: 1em;
+}
+
+.headerDisplayBox > div {
+    padding-left: 20px;
 }
 
 main {
     height: 90%;
+    width: 100%;
+    width: 100%;
 }
 
 section {
@@ -44,11 +76,341 @@ section {
 }
 
 section.menuDisplayBox {
-    width: 15%;
+    width: 14.9%;
+    width: 14.9%;
     float: left;
+    background: #b2b2b21b;
+    border-right: 0.5px solid #b2b2b2;
+}
+
+.menuItems {
+    width:91%;
+    height: 65%;
+    padding: 0px 4.5%;
+    padding-top: 20%;
+    color:grey;
+}
+
+.menuItem {
+    width:95%;
+    height: 50px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr;
+    place-items: center;
+    justify-items: start;
+    padding-left:10px;
+    margin-bottom:10px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.menuItems > .menuItem:hover {
+    background: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.activeMenuItem {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.userPreferences {
+    width: 91%;
+    height: 30%;
+    padding: 0px 4.5%;
+    display:grid;
+    align-items: end;
+    grid-template-rows:1fr;
+    border-top: 0.5px solid #b2b2b2;
+    color: var(--secondary-color);
+}
+
+.userPreferences .menuItem:hover {
+    background:white;
+    cursor: pointer;
+    background: #b2b2b21b;
+    border-right: 0.5px solid #b2b2b2;
+}
+
+.menuItems {
+    width:91%;
+    height: 65%;
+    padding: 0px 4.5%;
+    padding-top: 20%;
+    color:grey;
+}
+
+.menuItem {
+    width:95%;
+    height: 50px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr;
+    place-items: center;
+    justify-items: start;
+    padding-left:10px;
+    margin-bottom:10px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.menuItems > .menuItem:hover {
+    background: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.activeMenuItem {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.userPreferences {
+    width: 91%;
+    height: 30%;
+    padding: 0px 4.5%;
+    display:grid;
+    align-items: end;
+    grid-template-rows:1fr;
+    border-top: 0.5px solid #b2b2b2;
+    color: var(--secondary-color);
+}
+
+.userPreferences .menuItem:hover {
+    background:white;
+    cursor: pointer;
 }
 
 section.mainDisplayBox {
-    width: 85%;
+    width: 85.03%;
+    height: 100%;
     float: right;
+    border-top:0.5px solid #b2b2b2;
+    border-left:0.5px solid #b2b2b2;
+    border-top-left-radius: 20px;
 }
+
+.chatArea, .chatbox {
+    width:98%;
+    margin: 2% 0 0 2%;
+}
+.chatArea {
+    height: 66.5%;
+}
+
+.chatAreaOuput {
+    width: 90%;
+    height: 100%;
+    padding: 1%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatAreaOuput img, .chatAreaOuput .emptyText {
+    width: 50%;
+    margin: auto;
+    opacity: 0.5;
+}
+
+.chatbox {
+    height: 26.5%;
+    display: grid;
+    place-items:center;
+}
+
+.chatbox > form {
+    width:60%;
+    height:65px;
+    border: 0.5px solid var(--secondary-color);
+    border-radius: 5px;
+    display:grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0.5fr 6fr 1fr;
+    place-items: center;
+    gap: 5px;
+    box-shadow: -6px -5px 14px -10px #0078DB, 5px 6px 12px -8px #003662;
+}
+
+.chatbox > form > textarea {
+    height: 65%;
+    width:95%;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 2%;
+    color: var(--secondary-color);
+}
+
+.morechatfns, .sendMsgBtn {
+    height: 100%;
+    width: 100%;
+}
+.morechatfns {
+    border: none;
+    background: transparent;
+    border-right: 0.5px solid var(--secondary-color);
+    font-size: 1em;
+}
+
+.sendMsgBtn {
+    border: none;
+    background: transparent;
+    border-left: 0.5px solid var(--secondary-color);
+    font-size: 1em;
+    color:white;
+    background: var(--secondary-color);
+    border-radius:0 5px 5px 0;
+    opacity: 0.6;
+}
+
+/* Cj CSS section */
+
+    .body {
+            font-family: Arial, sans-serif; /* Set font */
+            background: var(--secondary-color); /* Dark blue background */
+            min-height: 100vh; /* Full viewport height */
+            padding: 20px; /* Space around edges */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Container to hold everything */
+        .container {
+            max-width: 1200px; /* Maximum width */
+            margin: 0 auto; /* Center on page */
+        }
+
+        /* Header section at top */
+        .header {
+            text-align: center; /* Center text */
+            margin-bottom: 30px; /* Space below */
+            color: var(--bg-color); /* White text */
+        }
+
+        .header h1 {
+            font-size: 40px; /* Large title */
+            margin-bottom: 10px; /* Space below title */
+        }
+
+        /* Language dropdown box */
+        .language-selector {
+            background: var(--bg-color); /* White background */
+            padding: 15px; /* Space inside */
+            border-radius: 12px; /* Rounded corners */
+            max-width: 400px; /* Maximum width */
+            margin: 0 auto 30px; /* Center and add space below */
+            text-align: center; /* Center text */
+        }
+
+        .language-selector select {
+            padding: 10px 20px; /* Space inside dropdown */
+            border: 2px solid var(--primary-color); /* Blue border */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px; /* Text size */
+            margin-top: 10px; /* Space above */
+        }
+
+        /* Each category section */
+        .category-section {
+            background: var(--bg-color); /* White background */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Space inside */
+            margin-bottom: 20px; /* Space below */
+            border: 2px solid var(--primary-color); /* Blue border */
+        }
+
+        /* Category header area */
+        .category-header {
+            border-bottom: 2px solid var(--primary-color); /* Blue bottom line */
+            padding-bottom: 10px; /* Space below */
+            margin-bottom: 15px; /* Space after line */
+        }
+
+        .category-header h3 {
+            color: var(--primary-color); /* Blue text */
+            font-size: 20px; /* Text size */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Grid to hold phrase cards */
+        .phrases-grid {
+            display: grid; /* Use grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 10px; /* Space between cards */
+        }
+
+        /* Individual phrase card */
+        .phrase-card {
+            background: var(--bg-color); /* White background */
+            border: 2px solid var(--primary-color); /* Blue border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px; /* Space inside */
+            display: flex; /* Flexbox layout */
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center vertically */
+        }
+
+        .phrase-card:hover {
+            background: var(--primary-color); /* Blue background on hover */
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* English phrase text */
+        .phrase-english {
+            font-weight: bold; /* Make bold */
+            color: var(--dark-color); /* Dark text */
+            margin-bottom: 5px; /* Space below */
+        }
+
+        .phrase-card:hover .phrase-english {
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* Translated phrase text */
+        .phrase-translation {
+            color: var(--secondary-color); /* Dark blue text */
+            font-size: 14px; /* Smaller text */
+        }
+
+        .phrase-card:hover .phrase-translation {
+            color: var(--bg-color); /* White text on hover */
+        }
+
+        /* Speaker button */
+        .speak-btn {
+            background: var(--primary-color); /* Blue background */
+            color: var(--bg-color); /* White icon */
+            border: none; /* No border */
+            border-radius: 50%; /* Circle shape */
+            width: 40px; /* Button width */
+            height: 40px; /* Button height */
+            font-size: 18px; /* Icon size */
+            cursor: pointer; /* Pointer on hover */
+        }
+
+        .speak-btn:hover {
+            background: var(--secondary-color); /* Dark blue on hover */
+        }
+
+        .speak-btn.playing {
+            background: var(--secondary-color); /* Dark blue when playing */
+            animation: pulse 1.5s infinite; /* Pulse animation */
+        }
+
+        /* Pulse animation for speaking */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); } /* Normal size */
+            50% { transform: scale(1.1); } /* Slightly bigger */
+        }
+
+        /* Info text at bottom */
+        .voice-info {
+            text-align: center; /* Center text */
+            margin-top: 20px; /* Space above */
+            color: var(--bg-color); /* White text */
+        }
